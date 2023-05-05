@@ -1,0 +1,8 @@
+variables:
+  - group: status-endpoint
+  - name: service_name
+    value: nhse-tsas-solarch-demo-api
+  - name: short_service_name
+    value: ntsda
+  - name: service_base_path
+    value: nhse-tsas-solarch-demo-api
