@@ -1,6 +1,6 @@
 SERVICE_NAME: nhse-tsas-solarch-demo-api
 PRODUCT_DISPLAY_NAME: nhse-tsas-solarch-demo-api
-DESCRIPTION: example description
+DESCRIPTION: API PoC to demonstrate setting up simple API
 APIGEE_ENVIRONMENTS:
   - name: internal-dev
     display_name: Internal Development
