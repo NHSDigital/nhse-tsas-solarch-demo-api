@@ -6,7 +6,7 @@
         <Condition>request.header.Authorization Is null</Condition>
       </Step>
       <Step>
-        <Name>OauthV2.VerifyAccessTokenAppAllLevelsOrUserP9</Name>
+        <Name>OauthV2.VerifyAccessTokenAppAllLevels</Name>
         <Condition>request.header.apikey Is null</Condition>
       </Step>
       <Step>
