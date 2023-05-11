@@ -3,7 +3,7 @@
     <Request>
       <Step>
         <Name>VerifyApiKey.FromHeader</Name>
-        <Condition>request.header.Bearer Is null</Condition>
+        <Condition>request.header.Authorization Is null</Condition>
       </Step>
       <Step>
         <Name>OauthV2.VerifyAccessTokenAppAllLevelsOrUserP9</Name>
