@@ -3,9 +3,11 @@
     <Request>
       <Step>
         <Name>VerifyApiKey.FromHeader</Name>
+        <Condition>request.header.Bearer Is null</Condition>
       </Step>
       <Step>
-        <Name>OauthV2.VerifyAccessTokenAppLevel3OrCis2Aal3</Name>
+        <Name>OauthV2.VerifyAccessTokenAppAllLevelsOrUserP9</Name>
+        <Condition>request.header.apikey Is null</Condition>
       </Step>
       <Step>
         <Name>FlowCallout.ApplyRateLimiting</Name>
