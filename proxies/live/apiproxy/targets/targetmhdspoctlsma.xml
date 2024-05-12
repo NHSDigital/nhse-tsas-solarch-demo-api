@@ -3,11 +3,11 @@
     <Request>
       <Step>
         <Name>VerifyApiKey.FromHeader</Name>
-        <Condition>request.header.Authorization Is null</Condition>
+        <Condition>(request.header.Authorization Is null) and (request.header.apikey IsNot null)</Condition>
       </Step>
       <Step>
         <Name>OauthV2.VerifyAccessTokenAppAllLevels</Name>
-        <Condition>request.header.apikey Is null</Condition>
+        <Condition>(request.header.apikey Is null) and (request.header.Authorization IsNot null)</Condition>
       </Step>
       <Step>
         <Name>FlowCallout.ApplyRateLimiting</Name>
