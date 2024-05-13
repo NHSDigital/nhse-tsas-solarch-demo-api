@@ -1,4 +1,12 @@
 <ProxyEndpoint name="default">
+  <PreFlow>
+    <Request>
+      <Step>
+        <Name>FlowCallout.GetEnvironmentKeyValueMapData</Name>
+      </Step>
+    </Request>
+  </PreFlow>
+
   <Flows>
     <Flow name="OptionsPreFlight">
       <Request/>
@@ -17,8 +25,7 @@
           <Name>AssignMessage.AddPayloadToPing</Name>
         </Step>
       </Response>
-      <Condition>(proxy.pathsuffix MatchesPath "/_ping") and ((request.verb = "GET") or (request.verb = "HEAD"))
-      </Condition>
+      <Condition>(proxy.pathsuffix MatchesPath "/_ping") and ((request.verb = "GET") or (request.verb = "HEAD"))</Condition>
     </Flow>
     <Flow name="StatusEndpoint">
       <Request>
@@ -38,8 +45,18 @@
       <Condition>(proxy.pathsuffix MatchesPath "/_status") and ((request.verb = "GET") or (request.verb = "HEAD"))
       </Condition>
     </Flow>
+    <Flow name="AddIHEHeaders">
+      <Description>"Adds a header to inform the back end where the request has been routed from"</Description>
+      <Request>
+        <Step>
+          <Name>AssignMessage.AddCors</Name>
+        </Step>
+      </Request>
+      <Response>
+      </Response>
+      <Condition>(proxy.pathsuffix MatchesPath "/mhdspoc/**") and ((request.verb = "GET") or (request.verb = "HEAD") or (request.verb = "POST") or (request.verb = "PUT"))</Condition>
+    </Flow>
   </Flows>
-  <PreFlow/>
   <PostClientFlow name="PostClientFlow">
     <Response>
       <Step>
@@ -51,17 +68,21 @@
     <BasePath>{{ SERVICE_BASE_PATH }}</BasePath>
     <VirtualHost>secure</VirtualHost>
   </HTTPProxyConnection>
+  <RouteRule name="NoRoute">
+    <Condition>(request.verb = "OPTIONS") and (request.header.origin != null) and (request.header.Access-Control-Request-Method != null)</Condition>
+  </RouteRule>
   <RouteRule name="NoRoutePing">
     <Condition>(proxy.pathsuffix MatchesPath "/_ping") and ((request.verb = "GET") or (request.verb = "HEAD"))</Condition>
   </RouteRule>
   <RouteRule name="NoRouteStatus">
     <Condition>(proxy.pathsuffix MatchesPath "/_status") and ((request.verb = "GET") or (request.verb = "HEAD"))</Condition>
   </RouteRule>
-  <RouteRule name="NoRoute">
-    <Condition>(request.verb = "OPTIONS") and (request.header.origin != null) and (request.header.Access-Control-Request-Method != null)</Condition>
+  <RouteRule name="nhse-tsas-solarch-mhdspoc-api-target">
+    <TargetEndpoint>tsas-solarch-mhdpoc-api-target</TargetEndpoint>
+    <Condition>(proxy.pathsuffix MatchesPath "/mhdspoc/**") and ((request.verb = "GET") or (request.verb = "HEAD") or (request.verb = "POST") or (request.verb = "PUT"))</Condition>
   </RouteRule>
-  <RouteRule name="sandbox">
-    <TargetEndpoint>sandbox</TargetEndpoint>
+  <RouteRule name="nhse-tsas-solarch-demo-api-target">
+    <TargetEndpoint>nhse-tsas-solarch-demo-api-target</TargetEndpoint>
   </RouteRule>
   <DefaultFaultRule>
     <Step>
