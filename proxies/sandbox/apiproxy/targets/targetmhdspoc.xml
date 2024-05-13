@@ -1,0 +1,58 @@
+<TargetEndpoint name="tsas-solarch-mhdpoc-api-target">
+  <PreFlow>
+    <Request>
+    <!-- No need to authorise access - open access
+      <Step>
+        <Name>VerifyApiKey.FromHeader</Name>
+        <Condition>request.header.Authorization Is null</Condition>
+      </Step>
+      <Step>
+        <Name>OauthV2.VerifyAccessTokenAppAllLevels</Name>
+        <Condition>request.header.apikey Is null</Condition>
+      </Step>
+    -->
+      <Step>
+        <Name>FlowCallout.ApplyRateLimiting</Name>
+      </Step>
+    </Request>
+  </PreFlow>
+  <FaultRules>
+    <!--
+    <FaultRule name="access_token_expired">
+      <Step>
+        <Name>ExtractVariables.OAuthErrorFaultString</Name>
+      </Step>
+      <Step>
+        <Name>AssignMessage.OAuthPolicyErrorResponse</Name>
+      </Step>
+      <Condition>oauthV2.OauthV2.VerifyAccessToken.failed</Condition>
+    </FaultRule>
+    -->
+  </FaultRules>
+  <!--
+    To point to a named target server as this is how it SHOULD be implemented:
+    For example:
+    <HTTPTargetConnection>
+      <SSLInfo>
+        <Enabled>true</Enabled>
+      </SSLInfo>
+      <LoadBalancer>
+        <Server name="nhse-tsas-solarch-demo-api" />
+      </LoadBalancer>
+    </HTTPTargetConnection>
+  -->
+  <HTTPTargetConnection>
+    <Properties>
+      <Property name="supports.http10">true</Property>
+      <Property name="request.retain.headers">User-Agent,Referer,Accept-Language</Property>
+      <Property name="retain.queryparams">apikey</Property>
+    </Properties>
+    <SSLInfo>
+      <Enabled>false</Enabled>
+    </SSLInfo>
+    <LoadBalancer>
+      <!-- Back end without TLSMA - hooked up to NRL Sandpit -->
+      <Server name="tsas-solarch-mhdpoc-api" />
+    </LoadBalancer>
+  </HTTPTargetConnection>
+</TargetEndpoint>
