@@ -2,40 +2,96 @@
 # for nhse-tsas-solarch-demo-api owned by NHS Digital (https://digital.nhs.uk/)
 openapi: '3.0.0'
 info:
-  title: 'nhse-tsas-solarch-demo-api'
+  title: NHSE Solution Architecture Demo API - FHIR and IHE
   version: 'Computed and injected at build time by `scripts/set_version.py`'
   description: |
     ## Overview
-    Add a fully fledged description here with markdown syntax.
-    For help completing the content of your API spec, see our guidance on the minimum standard (bronze) details 
-    to include [here](https://nhsd-confluence.digital.nhs.uk/display/APM/Writing+a+bronze+API+cover+page). You should also base your content on our exemplar API - [PDS FHIR](https://digital.nhs.uk/developer/api-catalogue/personal-demographics-service-fhir).
+    Use this API to demonstrate concepts and run PoCs. The API currently supports a PoC that provides a basic IHE MHDS (Mobile Health Documents Sharing) wrapper around the NHSE National Record Locator API v3.
+
+    ###IHE MHDS PoC
+    The [IHE MHDS Profile](https://profiles.ihe.net/ITI/MHDS/volume-1.html) describes actors maintaining local repositories for documents and binaries whilst sharing a centralised registry.
+    
+    You can:
+    * add references to local documents using an [ITI-65](https://profiles.ihe.net/ITI/MHD/ITI-65.html) transaction
+    * search for references using an [ITI-67](https://profiles.ihe.net/ITI/MHD/ITI-67.html) transaction
+    * retrieve a single reference using a standard FHIR R4 RESTful HTTPS GET operation
+
+    You cannot use this PoC to
+    * retrieve wider FHIR and IHE metadata such as Capability Statements etc.
+    * retrieve information on Lists and Folders related to documents.
+
+    #### Access modes
+    This API has one access mode:
+    
+    | Access mode                    | Functions          |
+    | ------------------------------ | ------------------ |
+    | [Application-restricted access](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation#application-restricted-apis)  |Search for a document.<br>Publish doucment reference.| 
+    
     ## Who can use this API
-    To be completed.
+    This API can only be used where there is a [legal basis](http://digital.nhs.uk/services/demographics/access-data-on-the-personal-demographics-service) to do so. Make sure you have a valid use case before you go too far with your development.  You must demonstrate you have a [valid use case](https://digital.nhs.uk/services/demographics/access-data-on-the-personal-demographics-service) as part of digital onboarding. 
+
     ## Related APIs
-    To be completed.
+    This API utilises the [National Record Locator v3 APIs](https://digital.nhs.uk/developer/api-catalogue/national-record-locator-fhir)
+
     ## API status and roadmap
-    To be completed.
+    This API is [in development, draft](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#statuses) as reflects its "proof of concept" status
+    
     ## Service level
-    To be completed.
+    This API has no official support wrap.
+
+    For more details, see [service levels](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#service-levels).
+
     ## Technology
-    To be completed.
+    This API is [RESTful](https://digital.nhs.uk/developer/guides-and-documentation/our-api-technologies#basic-rest).
+
+    It conforms to the [FHIR](https://digital.nhs.uk/developer/guides-and-documentation/our-api-technologies#fhir) global standard for health care data exchange, specifically to [FHIR R4 (v4.0.1)](https://hl7.org/fhir/r4/), except that it does not support the [capabilities](http://hl7.org/fhir/R4/http.html#capabilities) interaction.
+    It conforms to the [IHE MHDS Profile](https://profiles.ihe.net/ITI/MHDS/volume-1.html), and implements the MHDS Document Registry Actor role. The API-M Authorization server provides the IUA Authorization Server capability.
+
+    You do not need to know much about FHIR to use this API - FHIR APIs are just RESTful APIs that follow specific rules.
+    In particular:
+    - resource names are capitalised and singular, for example `/DocumentReference` not `/documentreferences`
+    - array names are singular, for example `line` not `lines`
+    - data items that are country-specific and thus not included in the FHIR global base resources are usually wrapped in an `extension` object
+
+    There are [libraries and SDKs available](https://digital.nhs.uk/developer/guides-and-documentation/api-technologies-at-nhs-digital#fhir-libraries-and-sdks) to help with FHIR API integration.
+
     ## Network access
-    To be completed.
+    This API is available on the internet and, indirectly, on the [Health and Social Care Network (HSCN)](https://digital.nhs.uk/services/health-and-social-care-network).
+    
     ## Security and authorisation
-    To be completed.
+    This API has one access mode:
+    - application-restricted access
+
+    ### Application-restricted access
+    Use this access mode if you need to:
+    * search for a document
+    * publish one or more document references
+
     ## Environments and testing
-    To be completed.
+
+    | Environment       | Base URL                                                               |
+    | ----------------- | ---------------------------------------------------------------------- |
+    | Sandbox           | `https://sandbox.api.service.nhs.uk/nhse-tsas-solarch-demo-api/mhdspoc/FHIR/R4`    |
+    | Integration test  | `https://int.api.service.nhs.uk/nhse-tsas-solarch-demo-api/mhdspoc/FHIR/R4`        |
+
+
+    ### Sandbox testing
+    Our [sandbox environment](https://digital.nhs.uk/developer/guides-and-documentation/testing#sandbox-testing):
+    * is for early developer testing
+    * only covers a limited set of scenarios
+    * is open access, so does not allow you to test authorisation
+
+    For details of sandbox test scenarios, or to try out the sandbox using our 'Try this API' feature, see the documentation for each endpoint.
+
     ## Onboarding
     To be completed.
   contact:
-    name: 'nhse-tsas-solarch-demo-api API Support'
+    name: NHS England Solution Architecture Team
     url: 'https://digital.nhs.uk/developer/help-and-support'
-    email: api.management@nhs.net
+    email: nhsd.architecture@nhs.net
 servers:
   - url: 'https://sandbox.api.service.nhs.uk/nhse-tsas-solarch-demo-api'
     description: Sandbox environment.
   - url: 'https://int.api.service.nhs.uk/nhse-tsas-solarch-demo-api'
     description: Integration test environment.
-  - url: 'https://api.service.nhs.uk/nhse-tsas-solarch-demo-api'
-    description: Production environment.
 paths: {}

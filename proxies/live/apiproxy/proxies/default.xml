@@ -45,6 +45,17 @@
       <Condition>(proxy.pathsuffix MatchesPath "/_status") and ((request.verb = "GET") or (request.verb = "HEAD"))
       </Condition>
     </Flow>
+    <Flow name="AddIHEHeaders">
+      <Description>"Adds a header to inform the back end where the request has been routed from"</Description>
+      <Request>
+        <Step>
+          <Name>AssignMessage.AddIHEHeaders</Name>
+        </Step>
+      </Request>
+      <Response>
+      </Response>
+      <Condition>(proxy.pathsuffix MatchesPath "/mhdspoc/**") and ((request.verb = "GET") or (request.verb = "HEAD") or (request.verb = "POST") or (request.verb = "PUT"))</Condition>
+    </Flow>
   </Flows>
   <PostClientFlow name="PostClientFlow">
     <Response>

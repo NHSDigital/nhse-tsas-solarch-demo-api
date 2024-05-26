@@ -49,7 +49,7 @@
       <Description>"Adds a header to inform the back end where the request has been routed from"</Description>
       <Request>
         <Step>
-          <Name>AssignMessage.AddCors</Name>
+          <Name>AssignMessage.AddIHEHeaders</Name>
         </Step>
       </Request>
       <Response>
