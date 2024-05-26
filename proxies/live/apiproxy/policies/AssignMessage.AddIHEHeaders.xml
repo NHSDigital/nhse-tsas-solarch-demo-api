@@ -2,7 +2,7 @@
 <AssignMessage async="false" continueOnError="false" enabled="true" name="AssignMessage.AddIHEHeaders">
     <Add>
         <Headers>
-            <Header name="nhse-apim-envrionment">sandbox</Header>
+            <Header name="nhse-apim-envrionment">live</Header>
         </Headers>
     </Add>
     <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
