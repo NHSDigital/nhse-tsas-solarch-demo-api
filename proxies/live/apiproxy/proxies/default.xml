@@ -56,6 +56,17 @@
       </Response>
       <Condition>(proxy.pathsuffix MatchesPath "/mhdspoc/**") and ((request.verb = "GET") or (request.verb = "HEAD") or (request.verb = "POST") or (request.verb = "PUT"))</Condition>
     </Flow>
+    <Flow name="ExtractAccessTokenIntrospectionInfo">
+      <Description>"Extracts information related to a supplied token in the form body"</Description>
+      <Request>
+        <Step>
+          <Name>OAuthV2.GetAccessTokenInfo</Name>
+        </Step>
+      </Request>
+      <Response>
+      </Response>
+      <Condition>(proxy.pathsuffix MatchesPath "/mhdspoc/**") and (request.verb = "POST")</Condition>
+    </Flow>
   </Flows>
   <PostClientFlow name="PostClientFlow">
     <Response>
