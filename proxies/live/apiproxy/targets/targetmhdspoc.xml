@@ -14,6 +14,19 @@
       </Step>
     </Request>
   </PreFlow>
+  <Flows>
+    <Flow name="AddIntrospectionHeaders">
+      <Description>"Adds a header to inform the back end of the client details"</Description>
+      <Request>
+        <Step>
+          <Name>AssignMessage.AddIntrospectionHeaders</Name>
+        </Step>
+      </Request>
+      <Response>
+      </Response>
+      <Condition>(proxy.pathsuffix MatchesPath "/mhdspoc/**") and ((request.verb = "GET") or (request.verb = "HEAD") or (request.verb = "POST") or (request.verb = "PUT"))</Condition>
+    </Flow>
+  </Flows>
   <FaultRules>
     <FaultRule name="access_token_expired">
       <Step>
