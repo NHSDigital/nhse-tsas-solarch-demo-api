@@ -1,0 +1,13 @@
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AssignMessage.AddIntrospectionHeaders">
+  <Add>
+      <Headers>
+          <Header name="developer-app-name">{developer.app.name}</Header>
+          <Header name="developer-app-id">{developer.app.id}</Header>
+          <Header name="apigee-client-id">{apigee.client_id}</Header>
+          <Header name="app-apiproducts">{app.apiproducts}</Header>
+          <Header name="developer-app-apiproducts">{developer.app.apiproducts}</Header>
+      </Headers>
+  </Add>
+  <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+  <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>
