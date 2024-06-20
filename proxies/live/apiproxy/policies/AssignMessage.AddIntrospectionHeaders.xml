@@ -6,6 +6,10 @@
           <Header name="apigee-client-id">{apigee.client_id}</Header>
           <Header name="app-apiproducts">{app.apiproducts}</Header>
           <Header name="developer-app-apiproducts">{developer.app.apiproducts}</Header>
+          <Header name="api-product-list">{api_product_list}</Header>
+          <Header name="oauth-scope">{scope}</Header>
+          <Header name="apigee-api-product-list">{apigee.api_product_list}</Header>
+          <Header name="apigee-oauth-scope">{apigee.scope}</Header>
       </Headers>
   </Add>
   <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
