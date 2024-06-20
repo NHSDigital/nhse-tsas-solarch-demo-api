@@ -16,7 +16,7 @@
           <Header name="oauth-accesstoken">{accesstoken}</Header>
           <Header name="apigee-api-product-list">{apigee.api_product_list}</Header>
           <Header name="apigee-oauth-scope">{apigee.scope}</Header>
-          <Header name="get-access-token-client-id">{oauthv2accesstoken.OauthV2.GetAccessTokenInfo.client_id}</Header>
+          <Header name="get-access-token-client-id">{oauthv2accesstoken['OauthV2.GetAccessTokenInfo'].client_id}</Header>
       </Headers>
   </Add>
   <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
