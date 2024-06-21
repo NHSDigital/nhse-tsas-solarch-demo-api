@@ -18,5 +18,4 @@ else {
     context.setVariable("enhanced-introspect-expiresIn", context.getVariable('oauthv2accesstoken.GetOAuthV2Info1.expires_in'));
     context.setVariable("enhanced-introspect-scope", context.getVariable('oauthv2accesstoken.GetOAuthV2Info1.scope'));
     context.setVariable("enhanced-introspect-access-token", context.getVariable('oauthv2accesstoken.GetOAuthV2Info1.access_token'));
-    context.setVariable("enhanced-introspect-accesstoken", context.getVariable('oauthv2accesstoken.GetOAuthV2Info1.accesstoken').toString());
 }
