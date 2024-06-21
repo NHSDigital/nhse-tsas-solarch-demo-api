@@ -1,3 +1,3 @@
-<GetOAuthV2Info async="false" continueOnError="true" enabled="true" name="OauthV2.GetAccessTokenInfo">
+<GetOAuthV2Info async="false" continueOnError="true" enabled="true" name="OAuthV2.GetAccessTokenInfo">
   <AccessToken ref="request.formparam.token"></AccessToken>
 </GetOAuthV2Info>
