@@ -1,4 +1,4 @@
-var client_id = context.getVariable('oauthv2accesstoken.OAuthV2.GetAccessTokenInfo.client_id');
+var client_id = context.getVariable('oauthv2accesstoken.GetOAuthV2Info1.client_id');
 
 if (!client_id || client_id === "" || client_id === null) {
     // No products associated with the app, deny access

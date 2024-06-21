@@ -15,6 +15,23 @@
     </Request>
   </PreFlow>
   <Flows>
+    <Flow name="ExtractAccessTokenIntrospectionInfo">
+      <Description>"Extracts information related to a supplied token in the form body"</Description>
+      <Request>
+        <Step>
+          <Name>GetOAuthV2Info1</Name>
+        </Step>
+        <Step>
+          <Name>Javascript.EnhancedAccessTokenInfo</Name>
+        </Step>
+        <Step>
+          <Name>AssignMessage.AddIntrospectionAccessTokenInfo</Name>
+        </Step>
+      </Request>
+      <Response>
+      </Response>
+      <Condition>(proxy.pathsuffix MatchesPath "/mhdspoc/**") and (request.verb = "POST")</Condition>
+    </Flow>
     <Flow name="AddIntrospectionHeaders">
       <Description>"Adds a header to inform the back end of the client details"</Description>
       <Request>
