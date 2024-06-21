@@ -8,6 +8,7 @@
           <Header name="enhanced-introspect-expires-in">{enhanced-introspect-expiresIn}</Header>
           <Header name="enhanced-introspect-scope">{enhanced-introspect-scope}</Header>
           <Header name="enhanced-introspect-access-token">{enhanced-introspect-access-token}</Header>
+          <Header name="enhanced-introspect-accesstoken-b64">{encodeBase64(enhanced-introspect-accesstoken)}</Header>
       </Headers>
   </Add>
   <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
