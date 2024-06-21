@@ -1,0 +1,11 @@
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AssignMessage.AddIntrospectionAccessTokenInfo">
+  <Add>
+      <Headers>
+          <Header name="get-access-token-client-id">{oauthv2accesstoken.OAuthV2.GetAccessTokenInfo.client_id}</Header>
+          <Header name="has-posted-access-token">{hasPostedAccessToken}</Header>
+          <Header name="introspect-client-id">{introspectClientId}</Header>
+      </Headers>
+  </Add>
+  <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+  <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

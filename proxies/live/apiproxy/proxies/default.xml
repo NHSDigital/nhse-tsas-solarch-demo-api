@@ -62,6 +62,12 @@
         <Step>
           <Name>OAuthV2.GetAccessTokenInfo</Name>
         </Step>
+        <Step>
+          <Name>Javascript.EnhancedAccessTokenInfo</Name>
+        </Step>
+        <Step>
+          <Name>AssignMessage.AddIntrospectionAccessTokenInfo</Name>
+        </Step>
       </Request>
       <Response>
       </Response>
