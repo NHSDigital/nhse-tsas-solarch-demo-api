@@ -19,6 +19,9 @@
       <Description>"Extracts information related to a supplied token in the form body"</Description>
       <Request>
         <Step>
+          <Name>AssignMessage.AddIntrospectionAccessTokenInfoDummy</Name>
+        </Step>
+        <Step>
           <Name>GetOAuthV2Info1</Name>
         </Step>
         <Step>
