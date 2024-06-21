@@ -30,6 +30,9 @@
         <Step>
           <Name>AssignMessage.AddIntrospectionAccessTokenInfo</Name>
         </Step>
+        <Step>
+          <Name>AssignMessage.AddIntrospectionHeaders</Name>
+        </Step>
       </Request>
       <Response>
       </Response>
