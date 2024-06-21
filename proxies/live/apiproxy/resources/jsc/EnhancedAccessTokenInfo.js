@@ -2,10 +2,18 @@ var client_id = context.getVariable('oauthv2accesstoken.GetOAuthV2Info1.client_i
 
 if (!client_id || client_id === "" || client_id === null) {
     // No products associated with the app, deny access
-    context.setVariable("hasPostedAccessToken", "false");
-    context.setVariable("introspectClientId", client_id);
+    context.setVariable("enhanced-hasPostedAccessToken", "false");
+    context.setVariable("enhanced-introspectClientId", "UNKNOWN");
+    context.setVariable("enhanced-apiProductList", "UNKNOWN");
+    context.setVariable("enhanced-status", "UNKNOWN");
+    context.setVariable("enhanced-expiresIn", "UNKNOWN");
 }
 else {
-    context.setVariable("hasPostedAccessToken", "true");
-    context.setVariable("introspectClientId", "UNKNOWN");
+    context.setVariable("enhanced-hasPostedAccessToken", "true");
+    context.setVariable("enhanced-introspectClientId", client_id);
+    context.setVariable("enhanced-apiProductList", oauthv2accesstoken.GetOAuthV2Info1.api_product_list);
+    context.setVariable("enhanced-status", oauthv2accesstoken.GetOAuthV2Info1.status);
+    context.setVariable("enhanced-expiresIn", oauthv2accesstoken.GetOAuthV2Info1.expires_in);
+    let accesstokenb64 = Buffer.from(JSON.stringify(oauthv2accesstoken.GetOAuthV2Info1.accesstoken)).toString("base64");
+    context.setVariable("enhanced-accesstokenb64", accesstokenb64);
 }
