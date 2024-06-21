@@ -14,6 +14,4 @@ else {
     context.setVariable("enhanced-apiProductList", context.getVariable('oauthv2accesstoken.GetOAuthV2Info1.api_product_list'));
     context.setVariable("enhanced-status", context.getVariable('oauthv2accesstoken.GetOAuthV2Info1.status'));
     context.setVariable("enhanced-expiresIn", context.getVariable('oauthv2accesstoken.GetOAuthV2Info1.expires_in'));
-    var accesstokenb64 = Buffer.from(JSON.stringify(context.getVariable('oauthv2accesstoken.GetOAuthV2Info1.accesstoken'))).toString("base64");
-    context.setVariable("enhanced-accesstokenb64", accesstokenb64);
 }
