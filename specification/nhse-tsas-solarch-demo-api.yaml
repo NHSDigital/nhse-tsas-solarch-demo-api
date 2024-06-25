@@ -6,9 +6,12 @@ info:
   version: 'Computed and injected at build time by `scripts/set_version.py`'
   description: |
     ## Overview
-    Use this API to demonstrate concepts and run PoCs. The API currently supports a PoC that provides a basic IHE MHDS (Mobile Health Documents Sharing) wrapper around the NHSE National Record Locator API v3.
+    Use this API to demonstrate concepts and run PoCs. The API currently supports the following PoCs
+    * 1 - a PoC that provides a basic IHE MHDS (Mobile Health Documents Sharing) wrapper around the NHSE National Record Locator API v3.
+    * 2 - a PoC that acts as a central proxy to retrieve DiagnosticReport FHIR resources, utilising TLS-MA to secure communication with the target FHIR server
+    * 3 - a PoC that acts as a pseudo "introspect" OAuth2 endpoint to return information about a supplied access_token as per [RFC7662](https://datatracker.ietf.org/doc/html/rfc7662)
 
-    ###IHE MHDS PoC
+    ###1 - IHE MHDS PoC
     The [IHE MHDS Profile](https://profiles.ihe.net/ITI/MHDS/volume-1.html) describes actors maintaining local repositories for documents and binaries whilst sharing a centralised registry.
     
     You can:
@@ -27,6 +30,98 @@ info:
     | ------------------------------ | ------------------ |
     | [Application-restricted access](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation#application-restricted-apis)  |Search for a document.<br>Publish doucment reference.| 
     
+    #### Security and authorisation
+    This API has one access mode:
+    - application-restricted access
+
+    ##### Application-restricted access
+    Use this access mode if you need to:
+    * search for a document
+    * publish one or more document references
+
+    #### Environments and testing
+
+    | Environment       | Base URL                                                               |
+    | ----------------- | ---------------------------------------------------------------------- |
+    | Sandbox           | `https://sandbox.api.service.nhs.uk/nhse-tsas-solarch-demo-api/mhdspoc/FHIR/R4`    |
+    | Integration test  | `https://int.api.service.nhs.uk/nhse-tsas-solarch-demo-api/mhdspoc/FHIR/R4`        |
+
+
+    ##### Sandbox testing
+    Our [sandbox environment](https://digital.nhs.uk/developer/guides-and-documentation/testing#sandbox-testing):
+    * is for early developer testing
+    * only covers a limited set of scenarios
+    * is open access, so does not allow you to test authentication
+
+    For details of sandbox test scenarios, or to try out the sandbox using our 'Try this API' feature, see the documentation for each endpoint.
+
+
+    ###2 - DiagnosticReport Proxy PoC
+    This PoC acts as a proxy to back-end FHIR R4 servers which hold DiagnosticReport resourced related to the pointers held in the National Record Locator.
+    
+    
+    You can:
+    * retrieve a DiagnosticReport FHIR R4 resource from a target back-end FHIR R4 server, passing in the value from the DocumentReference.content.attachement.url of the DocumentReference resource retrieved from NRL in the NHSE-NRL-Pointer-URL HTTP header
+
+
+    #### Access modes
+    This API has one access mode:
+    
+    | Access mode                    | Functions          |
+    | ------------------------------ | ------------------ |
+    | [Application-restricted access](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation#application-restricted-apis)  |Retrieve a DiagnosticReport.| 
+    
+    #### Security and authorisation
+    This API has one access mode:
+    - application-restricted access
+
+    ##### Application-restricted access
+    Use this access mode if you need to:
+    * retrieve a DiagnosticReport
+
+    ###3 - OAuth2 token introspection PoC
+    This PoC acts as an introspect endpoint for the API-M OAuth2 service, as defined in [RFC7662](https://datatracker.ietf.org/doc/html/rfc7662)
+    
+    
+    You can:
+    * retrieve information about an access_token
+
+
+    #### Access modes
+    This API has one access mode:
+    
+    | Access mode                    | Functions          |
+    | ------------------------------ | ------------------ |
+    | [Application-restricted access](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation#application-restricted-apis)  |Retrieve a DiagnosticReport.| 
+    
+    #### Security and authorisation
+    This API has one access mode:
+    - application-restricted access
+
+    ##### Application-restricted access
+    Use this access mode if you need to:
+    * retrieve information about an access_token issued by the API-M platform OAuth2 service
+
+
+    #### Environments and testing
+
+    | Environment       | Base URL                                                               |
+    | ----------------- | ---------------------------------------------------------------------- |
+    | Sandbox           | `https://sandbox.api.service.nhs.uk/nhse-tsas-solarch-demo-api/mhdspoc/oauth2/introspect`    |
+    | Integration test  | `https://int.api.service.nhs.uk/nhse-tsas-solarch-demo-api/mhdspoc/oauth2/introspect`        |
+
+
+    ##### Sandbox testing
+    Our [sandbox environment](https://digital.nhs.uk/developer/guides-and-documentation/testing#sandbox-testing):
+    * is for early developer testing
+    * only covers a limited set of scenarios
+    * is open access, so does not allow you to test authentication
+
+    For details of sandbox test scenarios, or to try out the sandbox using our 'Try this API' feature, see the documentation for each endpoint.
+
+
+
+
     ## Who can use this API
     This API can only be used where there is a [legal basis](http://digital.nhs.uk/services/demographics/access-data-on-the-personal-demographics-service) to do so. Make sure you have a valid use case before you go too far with your development.  You must demonstrate you have a [valid use case](https://digital.nhs.uk/services/demographics/access-data-on-the-personal-demographics-service) as part of digital onboarding. 
 
@@ -58,33 +153,9 @@ info:
     ## Network access
     This API is available on the internet and, indirectly, on the [Health and Social Care Network (HSCN)](https://digital.nhs.uk/services/health-and-social-care-network).
     
-    ## Security and authorisation
-    This API has one access mode:
-    - application-restricted access
-
-    ### Application-restricted access
-    Use this access mode if you need to:
-    * search for a document
-    * publish one or more document references
-
-    ## Environments and testing
-
-    | Environment       | Base URL                                                               |
-    | ----------------- | ---------------------------------------------------------------------- |
-    | Sandbox           | `https://sandbox.api.service.nhs.uk/nhse-tsas-solarch-demo-api/mhdspoc/FHIR/R4`    |
-    | Integration test  | `https://int.api.service.nhs.uk/nhse-tsas-solarch-demo-api/mhdspoc/FHIR/R4`        |
-
-
-    ### Sandbox testing
-    Our [sandbox environment](https://digital.nhs.uk/developer/guides-and-documentation/testing#sandbox-testing):
-    * is for early developer testing
-    * only covers a limited set of scenarios
-    * is open access, so does not allow you to test authorisation
-
-    For details of sandbox test scenarios, or to try out the sandbox using our 'Try this API' feature, see the documentation for each endpoint.
 
     ## Onboarding
-    To be completed.
+    Not applicable
   contact:
     name: NHS England Solution Architecture Team
     url: 'https://digital.nhs.uk/developer/help-and-support'
@@ -94,4 +165,195 @@ servers:
     description: Sandbox environment.
   - url: 'https://int.api.service.nhs.uk/nhse-tsas-solarch-demo-api'
     description: Integration test environment.
-paths: {}
+paths: 
+  /mhdspoc/FHIR/R4/DocumentReference/{id}:
+    parameters:
+      - $ref: '#/components/parameters/BearerAuthorization'
+      - $ref: '#/components/parameters/Id'
+    get:
+      summary: Retrieve DocumentReference resource
+      description: |
+        ## Overview
+        Use this endpoint to retrieve a specific DocumentReference resource.
+
+        ## Sandbox testing
+        You can test the following scenarios in our sandbox environment:
+
+        | Scenario                                | Request                                                                                                                                                         | Response                                                                |
+        | ----------------------------------------| ----------------------------------------------------------------------------------------------------------------------------------------------------------------| ------------------------------------------------------------------------|
+        | Retrieve a specific DocumentReference   | `id`=`Y05868-1e404af3-077f-4bee-b7a6-a9be97e1ce01`                                                                                                              | HTTP Status 200 with single search result.                              |
+
+        You can try out the sandbox using the 'Try this API' feature on this page.
+      operationId: get-documentreference
+      responses:
+        '200':
+          description: Information successfully returned.
+          headers:
+            ETag:
+              $ref: '#/components/headers/ETag'
+            X-Correlation-Id:
+              $ref: '#/components/headers/X-Correlation-Id'
+            X-Request-Id:
+              $ref: '#/components/headers/X-Request-Id'     
+          content:
+            application/fhir+json:
+              schema:
+                $ref: components/schemas/DocumentReference.yaml
+              example:
+                $ref: components/examples/DocumentReference.json
+        '4XX':
+          description: |
+            An error occurred as follows:
+            
+            | HTTP status | Error code                 | Description |
+            | ----------- | -------------------------- | --------------------------------------------- |
+            | 400         | INVALID_RESOURCE_ID        | Invalid DocumentReference id. |
+            | 401         | ACCESS_DENIED              | Access token missing, invalid or expired, or calling application not configured for this operation. |
+            | 403         | ACCESS_DENIED              | Caller cannot perform this action. |
+            | 404         | RESOURCE_NOT_FOUND         | DocumentReference does not exist for given id. |
+            | 429         | TOO_MANY_REQUESTS          | You have exceeded your application's [rate limit](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#rate-limits). |
+    
+          content:
+            application/fhir+json:
+              schema:
+                $ref: '#/components/schemas/OperationOutcome'
+              example:
+                resourceType: OperationOutcome
+                issue:
+                  - severity: error
+                    code: structure
+                    details:
+                      coding:
+                        - system: 'https://fhir.nhs.uk/R4/CodeSystem/Spine-ErrorOrWarningCode'
+                          version: '1'
+                          code: MISSING_VALUE
+                          display: Required value is missing
+                    diagnostics: "Missing value - 'id'"      
+components:
+  headers:
+    ETag:
+      $ref: 'components/schemas/ETag.yaml'
+    X-Correlation-Id:
+      $ref: 'components/schemas/XCorrelationId.yaml'
+    X-Request-Id:
+      $ref: 'components/schemas/XRequestID.yaml'
+  parameters:
+    Id:
+      name: id
+      in: path
+      description: The id of the DocumentReference.
+      required: true
+      schema:
+        type: string
+        example: "Y05868-1e404af3-077f-4bee-b7a6-a9be97e1ce01"
+    IfMatch:
+      in: header
+      name: If-Match
+      description: |
+        Latest known version identifier enclosed in quotes preceded by `W/`.
+
+        Send the value of the patient's `ETag` response header on patient retrieval when updating a patient.
+        This is to ensure that any updates are applied against an up-to-date version of the patient resource.
+      required: true
+      schema:
+        type: string
+        pattern: "^W\/\"[0-9]+\"$"  # Printable characters enclosed in quotes. See: https://tools.ietf.org/html/rfc7230#section-3.2.6
+        example: 'W/"2"'
+    BearerAuthorization:
+      in: header
+      name: Authorization
+      description: |
+        An [OAuth 2.0 bearer token](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation#application-restricted-apis).
+
+        Required in all environments except sandbox.
+      required: false
+      schema:
+        type: string
+        format: '^Bearer\ [[:ascii:]]+$'
+        example: 'Bearer g1112R_ccQ1Ebbb4gtHBP1aaaNM'
+    ContentType:
+      in: header
+      name: Content-Type
+      description: |
+        For a PATCH request, this must be set to `application/json-patch+json`.
+      required: true
+      schema:
+        type: string
+        example: application/json-patch+json
+    RequestID:
+      in: header
+      name: X-Request-ID
+      required: true
+      description: |
+        A globally unique identifier (GUID) for the request, which we use to de-duplicate repeated requests and to trace the request if you contact our helpdesk.
+        
+        Must be a universally unique identifier (UUID) (ideally version 4).
+
+        Mirrored back in a response header.
+
+        This is a mandatory header.
+
+        If you re-send a failed request, use the same value in this header.
+      schema:
+        type: string
+        pattern: '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
+        example: 60E0B220-8136-4CA5-AE46-1D97EF59D068
+    CorrelationID:
+      in: header
+      name: X-Correlation-ID
+      required: false
+      description: |
+        An optional ID which you can use to track transactions across multiple systems. It can take any value, but we recommend avoiding `.` characters.
+        
+        Mirrored back in a response header.
+      schema:
+        type: string
+        example: 11C46F5F-CDEF-4865-94B2-0EE0EDCC26DA
+    NHSE-NRL-Pointer-URL:
+      in: header
+      name: NHSE-NRL-Pointer-URL
+      required: false
+      description: |
+        The URL of the target DiagnosticReport resource as conveyed by a DocumentReference.
+      schema:
+        type: string
+        example: https://internal-dev-sandbox-mhdpoctlsma-mhdpocbe.nhsdta.com/mhdspoc/FHIR/R4/DiagnosticReport/Y05868-1e404af3-077f-4bee-b7a6-a9be97e1ce01
+    ETag:
+      name: etag
+      schema:
+        type: string
+        pattern: "^W\/\"[0-9]+\"$" # Printable characters enclosed in quotes. See: https://tools.ietf.org/html/rfc7230#section-3.2.6
+        example: W/"2"
+      in: header
+      description: |
+        Record version identifier enclosed in quotes and preceded by 'W/'. For example, `W/"2"`.
+
+        Corresponds to `meta.versionId` attribute in the patient resource body.
+
+        When you retrieve a patient resource, you get a version number for the resource (in the `ETag` response header and in the `versionId` field in the response).
+        You must then pass the resource's version number in any update request (in the `If-Match` response header) made for the patient.
+    XCorrelationId:
+      name: x-correlation-id
+      schema:
+        type: string
+        example: 11C46F5F-CDEF-4865-94B2-0EE0EDCC26DA
+      in: header
+      description: |
+        The X-Correlation-ID from the request header, if supplied, mirrored back.
+  schemas:
+    DocumentReference:
+      $ref: components/schemas/DocumentReference.yaml
+  examples:
+    OperationOutcome:
+      summary: OperationOutcome example
+      value:
+        resourceType: OperationOutcome
+        issue:
+          - severity: error
+            code: value
+            details:
+              coding:
+                - system: 'https://fhir.nhs.uk/R4/CodeSystem/Spine-ErrorOrWarningCode'
+                  version: '1'
+                  code: INVALID_RESOURCE_ID
+                  display: Resource Id is invalid
