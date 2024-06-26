@@ -81,9 +81,11 @@
     <TargetEndpoint>tsas-solarch-mhdpoc-api-target</TargetEndpoint>
     <Condition>(proxy.pathsuffix MatchesPath "/mhdspoc/**") and ((request.verb = "GET") or (request.verb = "HEAD") or (request.verb = "POST") or (request.verb = "PUT"))</Condition>
   </RouteRule>
+  <!-- Uncomment this once default endpoint enabled in Sandpit environments
   <RouteRule name="nhse-tsas-solarch-demo-api-target">
     <TargetEndpoint>nhse-tsas-solarch-demo-api-target</TargetEndpoint>
   </RouteRule>
+  -->
   <DefaultFaultRule>
     <Step>
       <Name>AssignMessage.Errors.CatchAllMessage</Name>
