@@ -198,9 +198,9 @@ paths:
           content:
             application/fhir+json:
               schema:
-                $ref: components/schemas/DocumentReference.yaml
+                $ref: 'components/schemas/DocumentReference.yaml'
               example:
-                $ref: components/examples/DocumentReference.json
+                $ref: 'components/examples/DocumentReference.json'
         '4XX':
           description: |
             An error occurred as follows:
