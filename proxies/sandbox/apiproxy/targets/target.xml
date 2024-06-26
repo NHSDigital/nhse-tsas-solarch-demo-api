@@ -51,7 +51,10 @@
       <Enabled>false</Enabled>
     </SSLInfo>
     <LoadBalancer>
+  <!-- Uncomment this once default endpoint enabled in all PTL environments
       <Server name="tsas-solarch-demo-api" />
+  -->
+      <Server name="tsas-solarch-mhdpoc-api" />
     </LoadBalancer>
   </HTTPTargetConnection>
 </TargetEndpoint>
