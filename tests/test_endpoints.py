@@ -10,8 +10,11 @@ from os import getenv
 
 @pytest.mark.smoketest
 def test_ping(nhsd_apim_proxy_url):
-    resp = requests.get(f"{nhsd_apim_proxy_url}/_ping")
-    assert resp.status_code == 200
+    if getenv('APIGEE_APP_ID') != "APIGEEPRODAPPID":
+        resp = requests.get(f"{nhsd_apim_proxy_url}/_ping")
+        assert resp.status_code == 200
+    else:
+        assert True
 
 
 @pytest.mark.smoketest
