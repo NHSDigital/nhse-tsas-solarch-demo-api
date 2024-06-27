@@ -4,13 +4,10 @@ parameters:
     default: false
   - name: test_command
     type: string
-    default: 'make test'
+    default: 'make test-prod'
   - name: smoketest_command
     type: string
-    default: 'make smoketest'
-  - name: apigee_prod_org_tests
-    type: boolean
-    default: false
+    default: 'make smoketest-prod'
 
 steps:
   - bash: |
@@ -37,26 +34,7 @@ steps:
       inputs:
         testResultsFiles: '$(Pipeline.Workspace)/s/$(SERVICE_NAME)/$(SERVICE_ARTIFACT_NAME)/test-report.xml'
         failTaskOnFailedTests: true
-  - ${{ if and(not(parameters.full), not(parameters.apigee_prod_org_tests)) }}:
-    # In order to run tests in prod you must supply the unique ID of an Apigee app
-    # that has authorized access to your service proxy.
-    - bash: |
-        echo "only running smoke tests"
-        export PROXY_NAME="$(FULLY_QUALIFIED_SERVICE_NAME)"
-        export APIGEE_ACCESS_TOKEN="$(secret.AccessToken)"
-        export APIGEE_APP_ID="MY APP ID"
-        export STATUS_ENDPOINT_API_KEY="$(STATUS_ENDPOINT_API_KEY)"
-        export SOURCE_COMMIT_ID="$(Build.SourceVersion)"
-        ${{ parameters.smoketest_command }}
-      workingDirectory: $(Pipeline.Workspace)/s/$(SERVICE_NAME)/$(SERVICE_ARTIFACT_NAME)
-      displayName: Run smoketests
-    - task: PublishTestResults@2
-      displayName: 'Publish smoketest results'
-      condition: always()
-      inputs:
-        testResultsFiles: '$(Pipeline.Workspace)/s/$(SERVICE_NAME)/$(SERVICE_ARTIFACT_NAME)/smoketest-report.xml'
-        failTaskOnFailedTests: true
-  - ${{ if parameters.apigee_prod_org_tests }}:
+  - ${{ if not(parameters.full) }}:
     # In order to run tests in prod you must supply the unique ID of an Apigee app
     # that has authorized access to your service proxy.
     - bash: |
