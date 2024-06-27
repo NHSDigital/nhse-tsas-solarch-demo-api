@@ -37,7 +37,7 @@ steps:
       inputs:
         testResultsFiles: '$(Pipeline.Workspace)/s/$(SERVICE_NAME)/$(SERVICE_ARTIFACT_NAME)/test-report.xml'
         failTaskOnFailedTests: true
-  - ${{ if not(parameters.full) and not(parameters.apigee_prod_org_tests) }}:
+  - ${{ if and(not(parameters.full), not(parameters.apigee_prod_org_tests)) }}:
     # In order to run tests in prod you must supply the unique ID of an Apigee app
     # that has authorized access to your service proxy.
     - bash: |
