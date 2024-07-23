@@ -16,6 +16,31 @@
       </Step>
     </Request>
   </PreFlow>
+  <Flows>
+    <Flow name="ExtractAccessTokenIntrospectionInfo">
+      <Description>"Extracts information related to a supplied token in the form body"</Description>
+      <Request>
+        <Step>
+          <Name>AssignMessage.AddIntrospectionAccessTokenInfoDummy</Name>
+        </Step>
+        <Step>
+          <Name>GetOAuthV2Info1</Name>
+        </Step>
+        <Step>
+          <Name>Javascript.EnhancedAccessTokenInfo</Name>
+        </Step>
+        <Step>
+          <Name>AssignMessage.AddIntrospectionAccessTokenInfo</Name>
+        </Step>
+        <Step>
+          <Name>AssignMessage.AddIntrospectionHeaders</Name>
+        </Step>
+      </Request>
+      <Response>
+      </Response>
+      <Condition>(proxy.pathsuffix MatchesPath "/mhdspoc/**") and (request.verb = "POST")</Condition>
+    </Flow>
+  </Flows>
   <FaultRules>
     <!--
     <FaultRule name="access_token_expired">

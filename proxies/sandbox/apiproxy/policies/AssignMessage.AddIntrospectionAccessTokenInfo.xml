@@ -1,0 +1,15 @@
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AssignMessage.AddIntrospectionAccessTokenInfo">
+  <Add>
+      <Headers>
+          <Header name="enhanced-introspect-has-posted-access-token">{enhanced-introspect-hasPostedAccessToken}</Header>
+          <Header name="enhanced-introspect-client-id">{enhanced-introspect-clientId}</Header>
+          <Header name="enhanced-introspect-api-product-list">{enhanced-introspect-apiProductList}</Header>
+          <Header name="enhanced-introspect-status">{enhanced-introspect-status}</Header>
+          <Header name="enhanced-introspect-expires-in">{enhanced-introspect-expiresIn}</Header>
+          <Header name="enhanced-introspect-scope">{enhanced-introspect-scope}</Header>
+          <Header name="enhanced-introspect-access-token">{enhanced-introspect-access-token}</Header>
+      </Headers>
+  </Add>
+  <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+  <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>
