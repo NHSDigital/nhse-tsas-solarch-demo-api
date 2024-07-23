@@ -1,0 +1,9 @@
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AssignMessage.AddIntrospectionAccessTokenInfoDummy">
+  <Add>
+      <Headers>
+          <Header name="extract-access-token-info-flow-was-called">yes</Header>
+      </Headers>
+  </Add>
+  <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+  <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

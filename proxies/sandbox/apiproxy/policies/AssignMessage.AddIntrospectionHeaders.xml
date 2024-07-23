@@ -1,0 +1,25 @@
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AssignMessage.AddIntrospectionHeaders">
+  <Add>
+      <Headers>
+          <Header name="developer-app-name">{developer.app.name}</Header>
+          <Header name="developer-app-id">{developer.app.id}</Header>
+          <Header name="apigee-client-id">{apigee.client_id}</Header>
+          <Header name="client-id">{client_id}</Header>
+          <Header name="app-apiproducts">{app.apiproducts}</Header>
+          <Header name="developer-app-apiproducts">{developer.app.apiproducts}</Header>
+          <Header name="apiproducts">{apiproducts}</Header>
+          <Header name="nir-approved">{nir_approved}</Header>
+          <Header name="app-nir-approved">{app.nir_approved}</Header>
+          <Header name="developer-app-nir-approved">{developer.app.nir_approved}</Header>
+          <Header name="api-product-list">{api_product_list}</Header>
+          <Header name="oauth-scope">{scope}</Header>
+          <Header name="oauth-accesstoken">{accesstoken}</Header>
+          <Header name="apigee-api-product-list">{apigee.api_product_list}</Header>
+          <Header name="apigee-oauth-scope">{apigee.scope}</Header>
+          <Header name="get-access-token-client-id">{oauthv2accesstoken.GetOAuthV2Info1.client_id}</Header>
+          <Header name="posted-token">{request.formparam.token}</Header>
+      </Headers>
+  </Add>
+  <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+  <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>
