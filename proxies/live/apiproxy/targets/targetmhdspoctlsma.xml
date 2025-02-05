@@ -53,6 +53,12 @@
       <Description>"Adds a header to inform the back end of the end user identity token if present"</Description>
       <Request>
         <Step>
+          <Name>AssignMessage.AddDummyHeader</Name>
+        </Step>
+        <Step>
+          <Name>AssignMessage.AddIssuerHeader</Name>
+        </Step>
+        <Step>
           <Name>AssignMessage.AddIdentityToken</Name>
         </Step>
       </Request>
