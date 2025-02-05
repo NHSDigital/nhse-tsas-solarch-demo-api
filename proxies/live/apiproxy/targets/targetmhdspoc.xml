@@ -39,6 +39,9 @@
       <Description>"Adds a header to inform the back end of the client details"</Description>
       <Request>
         <Step>
+          <Name>AssignMessage.AddDummyHeader</Name>
+        </Step>
+        <Step>
           <Name>AssignMessage.AddIntrospectionHeaders</Name>
         </Step>
       </Request>
