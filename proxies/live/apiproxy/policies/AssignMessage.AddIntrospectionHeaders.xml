@@ -1,7 +1,7 @@
 <AssignMessage async="false" continueOnError="false" enabled="true" name="AssignMessage.AddIntrospectionHeaders">
   <Add>
       <Headers>
-          <Header name="build-time">202502052058</Header>
+          <Header name="build-time">202502052126</Header>
           <Header name="developer-app-name">{developer.app.name}</Header>
           <Header name="developer-app-id">{developer.app.id}</Header>
           <Header name="apigee-client-id">{apigee.client_id}</Header>
@@ -19,10 +19,6 @@
           <Header name="apigee-oauth-scope">{apigee.scope}</Header>
           <Header name="get-access-token-client-id">{oauthv2accesstoken.GetOAuthV2Info1.client_id}</Header>
           <Header name="posted-token">{request.formparam.token}</Header>
-          <Header name="NHSlogin-ID-Token">{accesstoken.id_token}</Header>
-          <Header name="NHSlogin-sub">{accesstoken.id_token-subject}</Header>
-          <Header name="NHSlogin-nhsnumber">{accesstoken.auth_user_id}</Header>
-          <Header name="NHSD-Identity-IdP">{accesstoken.id_token-issuer}</Header>
       </Headers>
   </Add>
   <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
