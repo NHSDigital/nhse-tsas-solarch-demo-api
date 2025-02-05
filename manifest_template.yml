@@ -78,6 +78,8 @@ apigee:
           - 'urn:nhsd:apim:app:level3:{{ SERVICE_NAME }}'
           - 'urn:nhsd:apim:app:level0:{{ SERVICE_NAME }}'
           - 'urn:nhsd:apim:app:level1:{{ SERVICE_NAME }}'
+          - 'urn:nhsd:apim:user-nhs-login:P5:{{ SERVICE_NAME }}'
+          - 'urn:nhsd:apim:user-nhs-login:P9:{{ SERVICE_NAME }}'
     specs:
       - name: {{ NAME }}
         path: {{ SERVICE_NAME }}.json
