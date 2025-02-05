@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<AssignMessage async="false" continueOnError="false" enabled="true" name="AssignMessage.AddIdentityToken">
+<AssignMessage async="false" continueOnError="true" enabled="true" name="AssignMessage.AddIdentityToken">
     <Add>
         <Headers>
-            <Header name="NHSD-ID-Token">{accesstoken.id_token}</Header>
+            <Header name="NHSlogin-ID-Token">{accesstoken.id_token}</Header>
+            <Header name="NHSlogin-sub">{accesstoken.id_token-subject}</Header>
+            <Header name="NHSlogin-nhsnumber">{accesstoken.auth_user_id}</Header>
         </Headers>
     </Add>
-    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
     <AssignTo createNew="false" transport="http" type="request"/>
 </AssignMessage>
