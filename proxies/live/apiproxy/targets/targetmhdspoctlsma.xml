@@ -47,22 +47,11 @@
         <Step>
           <Name>AssignMessage.AddIntrospectionHeaders</Name>
         </Step>
-      </Request>
-      <Response>
-      </Response>
-      <Condition>(proxy.pathsuffix MatchesPath "/mhdspoc/**") and ((request.verb = "GET") or (request.verb = "HEAD") or (request.verb = "POST") or (request.verb = "PUT"))</Condition>
-    </Flow>
-    <Flow name="AddIdentityToken">
-      <Description>"Adds a header to inform the back end of the end user identity token if present"</Description>
-      <Request>
         <Step>
-          <Name>AssignMessage.AddDummyHeader</Name>
+          <Name>AssignMessage.AddIdentityToken</Name>
         </Step>
         <Step>
           <Name>AssignMessage.AddIssuerHeader</Name>
-        </Step>
-        <Step>
-          <Name>AssignMessage.AddIdentityToken</Name>
         </Step>
       </Request>
       <Response>
