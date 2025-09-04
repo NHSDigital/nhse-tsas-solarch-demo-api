@@ -72,7 +72,7 @@ extends:
         short_service_name: "${{ variables.short_service_name }}-dep"
         service_base_path: "${{ variables.service_base_path }}-dep"
         depends_on:
-          - dev
+          - solarchapi_dep_release
         post_deploy:
           - template: ./templates/run-tests-sandbox.yml
     # # Enable int environment when ready by uncommenting:
