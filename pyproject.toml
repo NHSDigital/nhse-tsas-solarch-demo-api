@@ -1,5 +1,5 @@
 [project]
-python = "^3.9"
+python = ">3.9.1,<4.0"
 name = "nhse-tsas-solarch-demo-api"
 
 [tool.poetry]
@@ -17,7 +17,7 @@ keywords = ["healthcare", "uk", "nhs"] #TODO add additional keywords
 
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = ">3.9.1,<4.0"
 pytest-nhsd-apim = "^3.4.1"
 
 [tool.poetry.group.dev.dependencies]
