@@ -17,10 +17,10 @@ keywords = ["healthcare", "uk", "nhs"] #TODO add additional keywords
 
 
 [tool.poetry.dependencies]
-python = "^3.8.1"
+python = "^3.9"
 pytest-nhsd-apim = "^3.4.1"
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
 flake8 = "^7.1.0"
 black = "^24.4.2"
 pip-licenses = "^4.4.0"
