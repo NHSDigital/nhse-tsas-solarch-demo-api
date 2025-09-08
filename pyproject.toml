@@ -1,5 +1,6 @@
 [project]
 python = "^3.8"
+name = "nhse-tsas-solarch-demo-api"
 
 [tool.poetry]
 name = "nhse-tsas-solarch-demo-api"
