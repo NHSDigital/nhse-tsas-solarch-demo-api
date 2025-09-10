@@ -24,7 +24,7 @@ APIGEE_ENVIRONMENTS:
   - name: int
     display_name: Integration Testing
     portal_visibility: true
-  - name: dep
+  - name: dev
     display_name: Deployment
     portal_visibility: true
 ---
